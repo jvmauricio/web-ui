@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y \
     fonts-dejavu \
     fonts-dejavu-core \
     fonts-dejavu-extra \
+    nodejs npm \
     && rm -rf /var/lib/apt/lists/*
 
 # Install noVNC
@@ -59,8 +60,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Install Playwright and browsers with system dependencies
 ENV PLAYWRIGHT_BROWSERS_PATH=/ms-playwright
-RUN playwright install --with-deps chromium
-RUN playwright install-deps
+RUN npm playwright install --with-deps chromium
+RUN npm playwright install-deps
 
 # Copy the application code
 COPY . .
